@@ -9,7 +9,12 @@ import UIKit
 
 class DetailsViewController: UIViewController {
 
+	let detailView = DetailsView()
 	override func loadView() {
-		self.view = DetailsView()
+		self.view = detailView
+	}
+
+	func set() {
+		detailView.set()
 	}
 }

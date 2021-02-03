@@ -12,15 +12,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	var window: UIWindow?
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-		guard let windowScene = scene as? UIWindowScene else { return assertionFailure() }
-		window = UIWindow(frame: windowScene.coordinateSpace.bounds)
 
-		guard let window = window else { return assertionFailure() }
-		window.windowScene = windowScene
+		if let windowScene = scene as? UIWindowScene {
+			let window = UIWindow(windowScene: windowScene)
 
-		let tableViewController = TableViewController()
-		window.rootViewController = tableViewController
-		window.makeKeyAndVisible()
+			let tableViewController = TableViewController()
+			let navController = UINavigationController(rootViewController: tableViewController)
+			navController.navigationBar.prefersLargeTitles = true
+
+			window.rootViewController = navController
+			self.window = window
+			window.makeKeyAndVisible()
+		}
 	}
 
 
